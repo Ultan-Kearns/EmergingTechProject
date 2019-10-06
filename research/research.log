@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.9.12)  6 OCT 2019 21:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2019.9.12)  6 OCT 2019 22:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -195,25 +195,25 @@ Overfull \hbox (6.207pt too wide) in paragraph at lines 13--17
 ound []Wikipedia
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 20.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 23.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.20 \end{document}
+l.23 \end{document}
                     [1]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 20.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 23.
  (./research.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 20.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 20.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 23.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 23.
 Package rerunfilecheck Info: File `research.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 20.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 23.
  ) 
 Here is how much of TeX's memory you used:
  4232 strings out of 492623
  63421 string characters out of 6135669
- 149590 words of memory out of 5000000
+ 150590 words of memory out of 5000000
  8168 multiletter control sequences out of 15000+600000
  5407 words of font info for 20 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -221,10 +221,10 @@ Here is how much of TeX's memory you used:
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on research.pdf (2 pages, 34700 bytes).
+Output written on research.pdf (2 pages, 36652 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 33 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
