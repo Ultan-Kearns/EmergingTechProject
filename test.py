@@ -1,5 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Dense
+#import MNIST from keras.dataset
 from keras.datasets import mnist
 
 #since MNIST images have 28*28 resolution
@@ -12,3 +13,5 @@ model.add(Dense(units=10, activation='softmax'))
 model.compile(loss='categorical_crossentropy',
               optimizer='sgd',
               metrics=['accuracy'])
+#load data
+print(mnist.load_data());

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h1>Hello and welcome to the flask page</h1>
+  <p>Here you will be able to draw digits and the backend will tell you what digit you drew!
+  </p>
+  <!--Set up canvas to draw digits-->
+  <canvas id="myCanvas" width="500" height="500" style="border: 6px solid black">
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.moveTo(0, 0);
+    </script>
+  </canvas>
+</body>
