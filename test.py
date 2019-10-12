@@ -1,5 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Dense
+import numpy as np
 #import MNIST from keras.dataset
 from keras.datasets import mnist
 from keras import losses
