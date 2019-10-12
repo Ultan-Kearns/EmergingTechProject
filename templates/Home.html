@@ -11,7 +11,10 @@
     <script>
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
+      posx = ctx.clientX;
+      posy = ctx.clientY;
       ctx.moveTo(0, 0);
+      ctx.lineTo(0,90);
     </script>
   </canvas>
 </body>
