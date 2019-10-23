@@ -1,0 +1,19 @@
+h1{
+  color: red;
+  font-style: impact;
+  text-align: center;
+  text-decoration: underline;
+}
+p{
+  text-align: center;
+}
+#verify{
+  margin-left: 16%;
+}
+#clear{
+  margin-left: 30%;
+}
+#canvas{
+  margin-left: 30%;
+
+}
