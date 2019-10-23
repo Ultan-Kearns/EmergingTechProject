@@ -1,38 +1,45 @@
 <!DOCTYPE html>
+
 <head>
   <title>Home</title>
   <link rel="stylesheet" href="../static/home.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+
+<body id="body">
   <h1>Hello and welcome to the flask page</h1>
   <p>Here you will be able to draw digits and the backend will tell you what digit you drew!
   </p>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="clearCanvas()" id="clear">Clear Canvas</button>
+  <button type="button" class="btn btn-primary" id="verify">Verify </button>
   <!--Set up canvas to draw digits-->
   <canvas id="canvas" width="500" height="500" style="border: 6px solid black">
     <script>
-    //define canvas
+      //define canvas
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
       //check if user clicked
-      canvas.addEventListener("click", function(e){
+      canvas.addEventListener("click", function(e) {
         //get mouse position
         var x = e.offsetX;
         var y = e.offsetY;
         //draw line
         ctx.lineTo(x, y);
-        ctx.moveTo(x,y);
+        ctx.moveTo(x, y);
         ctx.stroke();
-    });
-    function clear(){
-      alert("Cleared")
-    }
+      });
     </script>
   </canvas>
-  <br>
-  <button type="button" class="btn btn-primary" (click)="clear" id = "clear">Clear Canvas</button>
-  <button type="button" class="btn btn-primary" id = "verify">Verify </button>
+  <script>
+    function clearCanvas() {
+      //get canvas then clear completely
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+    }
+  </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
