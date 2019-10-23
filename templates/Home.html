@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <title>Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
   <h1>Hello and welcome to the flask page</h1>
@@ -9,12 +10,25 @@
   <!--Set up canvas to draw digits-->
   <canvas id="myCanvas" width="500" height="500" style="border: 6px solid black">
     <script>
+    //define canvas
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
-      posx = ctx.clientX;
-      posy = ctx.clientY;
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0,90);
+      //check if user clicked
+      canvas.addEventListener("click", function(e){
+        //get mouse position
+        var x = e.offsetX;
+        var y = e.offsetY;
+        //draw line
+        ctx.lineTo(x, y);
+        ctx.moveTo(x,y);
+        ctx.stroke();
+
+    });
     </script>
   </canvas>
+  <button type="button" class="btn btn-primary">Clear Canvas</button>
+  <button type="button" class="btn btn-primary">Verify </button>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
