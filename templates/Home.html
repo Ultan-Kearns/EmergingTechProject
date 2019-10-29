@@ -9,11 +9,13 @@
 
 <body id="body">
   <h1>Hello and welcome to the flask page</h1>
-  <p>Here you will be able to draw digits and the backend will tell you what digit you drew!
+  <p>
+    Here you will be able to draw digits and the backend will tell you what digit you drew!
+    Just click where you want the line to start and where you want it to end
   </p>
   <br>
   <button type="button" class="btn btn-primary" onclick="clearCanvas()" id="clear">Clear Canvas</button>
-  <button type="button" class="btn btn-primary" id="verify">Verify </button>
+  <button type="button" class="btn btn-primary" id="verify" onclick = "verify()">Verify </button>
   <!--Set up canvas to draw digits-->
   <canvas id="canvas" width="500" height="500" style="border: 6px solid black">
     <script>
@@ -38,6 +40,9 @@
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0,0,canvas.width, canvas.height);
+    }
+    function verify(){
+      //call keras function to verify digit
     }
   </script>
 </body>

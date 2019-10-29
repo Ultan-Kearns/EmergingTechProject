@@ -20,3 +20,4 @@ model.compile(loss=losses.categorical_crossentropy,
 optimizer=optimizers.SGD(lr=0.01, momentum=0.9, nesterov=True))
 #load data
 print(mnist.load_data());
+plt.imshows(x_train[0])
