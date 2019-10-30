@@ -9,28 +9,28 @@ import keras as kr
 import tensorflow as tf
 #This will plot out images for testing
 import matplotlib.pyplot as plt
-from keras.layers import Conv2D, MaxPooling2D
 #since MNIST images have 28*28 resolution
 #define image rows and columns to be 28
-image = 28
+image_rows = image_cols = 28
 #this trains and tests the AI with the MNIST DATA
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
-#template taken from keras site - code creates a Sequential model
+#Define sequential model
 model = kr.Sequential([
-    kr.layers.Flatten(input_shape=(28, 28)),
-    kr.layers.Dense(128, activation='relu'),
-    kr.layers.Dense(10, activation='softmax')
+    #flatten the layers to fit input size
+    kr.layers.Flatten(input_shape=(image_cols, image_rows)),
+    #here was basically see give me x neurons
+    #Used https://keras.io/activations/ to research activations
+    kr.layers.Dense(10, activation='relu'),
+    kr.layers.Dense(10, activation='relu'),
+    kr.layers.Dense(10, activation='relu'),
+    #research activation functions weird thing happens when switch to relu
+    kr.layers.Dense(1024, activation='softmax'),
 ])
-print(x_train.shape)
-
-
-#10 is number of classification since MNIST is 0 - 9 digits we use 10
-model.add(kr.layers.Dense(10, activation=tf.nn.softmax))
-#here we compile the model
-model.compile(optimizer='adam',
+ #here we compile the model
+model.compile(optimizer='Adadelta',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 #here we will train the model using training set and testing
-model.fit(x_train,y_train,epochs=10)
+model.fit(x_train,y_train,epochs=4)
 #score based on test models
 score = model.evaluate(x_test, y_test, verbose=0)
