@@ -8,12 +8,14 @@ p{
   text-align: center;
 }
 #verify{
-  margin-left: 16%;
+  margin-left: 25vw;
+  margin-bottom: 10%;
 }
 #clear{
-  margin-left: 30%;
+  margin-left: 25vw;
+  margin-bottom: 10%;
 }
 #canvas{
-  margin-left: 30%;
+  margin-left: 35vw;
 
 }
