@@ -22,7 +22,7 @@ def train():
         kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),    #research activation functions weird thing happens when switch to relu
-        kr.layers.Dense(512, activation='softmax'),
+        kr.layers.Dense(1024, activation='softmax'),
     ])
     #this will show what the model looks like
     model.summary();
@@ -33,5 +33,5 @@ def train():
                   metrics=['accuracy'])
     #here we will train the model using training set and testing for x epochs
     #using 512 batchs for each model
-    model.fit(x_train,y_train,epochs=10,batch_size=512)
+    model.fit(x_train,y_train,epochs=6, batch_size=256)
 train();
