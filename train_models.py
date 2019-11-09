@@ -8,6 +8,9 @@ import keras as kr
 import matplotlib.pyplot as plt
 import h5py
 import os
+from keras.models import load_model
+
+PATH = ""
 def train():
     #since MNIST images have 28*28 resolution
     #define image rows and columns to be 28
@@ -56,8 +59,22 @@ def train():
         menu();
 
 def prediction():
-    print("Predict......")
-
+    path = input("Please enter directory where you want to save the model: ")
+    try:
+        #if path blank use cur dir
+        if(path == ""):
+            path = os.getcwd()
+            print("PATH = " + path)
+            #check path exists if not call menu again and alert user
+            if(os.path.exists(path) == False):
+                print("path doesn't exist")
+                menu();
+        os.chdir(path)
+        model = load_model(path + "/" + "trained.h5")
+        print("Loaded model")
+    except:
+        print("File doesn't exist")
+        menu()
 def menu():
     print("""Python App to classify image using the MNIST Dataset and Keras - Ultan Kearns G00343745""")
     print("1. To train Model")
@@ -67,7 +84,7 @@ def menu():
         train()
     elif(x == "2"):
         #make prediction function
-        print("not implemented yet")
+        prediction()
     else:
         print("Not a valid option")
         menu();
