@@ -7,4 +7,6 @@ def home():
      return render_template("Home.html");
 @app.route('/request')
 def request():
-     print("Hello waaawe")
+     return render_template("Home.html");
+def verify():
+    
