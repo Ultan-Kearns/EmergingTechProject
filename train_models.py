@@ -35,11 +35,7 @@ def train():
     #using 512 batchs for each model
     model.fit(x_train,y_train,epochs=6, batch_size=256)
 def menu():
-    print("""
-    Hello and welcome to the application
-    Here we will use a model written in Keras to
-    perform verification and determine which digit a user drew
-    on a canvas which is visible from the Flask page """)
+    print("""Python App to classify image using the MNIST Dataset and Keras - Ultan Kearns G00343745""")
     print("1. To train Model")
     print("2. To make a prediction")
     x = input("Please enter the option you would like to choose: ")
@@ -49,5 +45,5 @@ def menu():
         #make prediction function
         print("not implemented yet")
     else:
-        print("AAAAAAAAAAAA")
+        print("Not a valid option")
 menu()
