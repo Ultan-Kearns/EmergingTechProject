@@ -39,10 +39,14 @@ def train():
     #prompt user for path
     path = input("Please enter directory where you want to save the model: ")
     try:
+        #if path blank use cur dir
+        if(path == ""):
+            path = os.getcwd()
+            print("PATH = " + path)
         #check path exists if not make path
-        print(os.path.exists(path) == False)
         if(os.path.exists(path) == False):
             os.mkdir(path)
+
         os.chdir(path)
         #save model
         model.save("trained.h5")
