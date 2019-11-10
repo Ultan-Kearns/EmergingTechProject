@@ -9,8 +9,6 @@ import matplotlib.pyplot as plt
 import h5py
 import os
 from keras.models import load_model
-
-PATH = ""
 def train():
     #since MNIST images have 28*28 resolution
     #define image rows and columns to be 28
@@ -30,7 +28,7 @@ def train():
         kr.layers.Dense(1024, activation='softmax'),
     ])
     #this will show what the model looks like
-    model.summary();
+    model.summary()
     #here we compile the model
     #Optimzers - compared optimizers at https://keras.io/optimizers/
     model.compile(optimizer='Adadelta',
@@ -39,6 +37,10 @@ def train():
     #here we will train the model using training set and testing for x epochs
     #using 256 batchs for each model
     model.fit(x_train,y_train,epochs=6, batch_size=256)
+    # Final evaluation of the model
+    final_score = model.evaluate(x_test, y_test, verbose=0)
+    print("final score: ")
+    print(final_score)
     #prompt user for path
     path = input("Please enter directory where you want to save the model: ")
     try:
@@ -59,19 +61,27 @@ def train():
         menu();
 
 def prediction():
-    path = input("Please enter directory where you want to save the model: ")
+    path = input("Please enter directory where model is stored: ")
     try:
-        #if path blank use cur dir
+        #if path blank use cur dir - this is for specifying file direction
         if(path == ""):
             path = os.getcwd()
             print("PATH = " + path)
             #check path exists if not call menu again and alert user
             if(os.path.exists(path) == False):
                 print("path doesn't exist")
+                path = ""
                 menu();
-        os.chdir(path)
-        model = load_model(path + "/" + "trained.h5")
         print("Loaded model")
+        #Found info at https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model
+        model = load_model(path + "/" + "trained.h5")
+        #load in the model
+        (x_train, y_train), (x_test, y_test) = mnist.load_data()
+        #predict random image and then show also generate randint between 1 and 10000 - size of test
+        prediction = model.predict(x_test)
+        random = np.random.randint(1,10000)
+        plt.imshow(x_test[random])
+        plt.show()
     except:
         print("File doesn't exist")
         menu()
@@ -85,6 +95,7 @@ def menu():
     elif(x == "2"):
         #make prediction function
         prediction()
+        menu()
     else:
         print("Not a valid option")
         menu();
