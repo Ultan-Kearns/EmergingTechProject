@@ -27,7 +27,10 @@ def train():
         #Used https://keras.io/activations/ to research activations
         kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),
-        kr.layers.Dense(256, activation='relu'),    #research activation functions weird thing happens when switch to relu
+        kr.layers.Dense(64, activation='relu'),
+        kr.layers.Dense(64, activation='relu'),
+        kr.layers.Dense(64, activation='relu'),
+        #research activation functions weird thing happens when switch to relu
         kr.layers.Dense(1024, activation='softmax'),
     ])
     # normalize inputs from 0-255 to 0-1
@@ -37,12 +40,12 @@ def train():
     model.summary()
     #here we compile the model
     #Optimzers - compared optimizers at https://keras.io/optimizers/
-    model.compile(optimizer='adam',
+    model.compile(optimizer='adadelta',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     #here we will train the model using training set and testing for x epochs
     #using 256 batchs for each model
-    model.fit(x_train,y_train,epochs=10, batch_size=512)
+    model.fit(x_train,y_train,epochs=10, batch_size=128)
     # Final evaluation of the model -  https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
     final_score = model.evaluate(x_test, y_test, verbose=0)
     print("final score: ")
