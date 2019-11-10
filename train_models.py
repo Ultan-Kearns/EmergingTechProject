@@ -4,10 +4,13 @@ import numpy as np
 from keras.datasets import mnist
 from keras import losses
 from keras import optimizers
+from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import MaxPooling2D
 import keras as kr
 import matplotlib.pyplot as plt
 import h5py
 import os
+
 from keras.models import load_model
 def train():
     #since MNIST images have 28*28 resolution
@@ -24,20 +27,23 @@ def train():
         #Used https://keras.io/activations/ to research activations
         kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),
-        kr.layers.Dense(64, activation='relu'),    #research activation functions weird thing happens when switch to relu
+        kr.layers.Dense(256, activation='relu'),    #research activation functions weird thing happens when switch to relu
         kr.layers.Dense(1024, activation='softmax'),
     ])
+    # normalize inputs from 0-255 to 0-1
+    x_train = x_train / 255
+    x_test = x_test / 255
     #this will show what the model looks like
     model.summary()
     #here we compile the model
     #Optimzers - compared optimizers at https://keras.io/optimizers/
-    model.compile(optimizer='Adadelta',
+    model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     #here we will train the model using training set and testing for x epochs
     #using 256 batchs for each model
-    model.fit(x_train,y_train,epochs=6, batch_size=256)
-    # Final evaluation of the model
+    model.fit(x_train,y_train,epochs=10, batch_size=512)
+    # Final evaluation of the model -  https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
     final_score = model.evaluate(x_test, y_test, verbose=0)
     print("final score: ")
     print(final_score)
@@ -51,7 +57,6 @@ def train():
         #check path exists if not make path
         if(os.path.exists(path) == False):
             os.mkdir(path)
-
         os.chdir(path)
         #save model
         model.save("trained.h5")
