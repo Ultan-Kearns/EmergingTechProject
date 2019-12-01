@@ -10,13 +10,13 @@
 <body id="body">
   <h1>MNIST digit verification - Ultan Kearns - G00343745</h1>
   <p>
-    Here you will be able to draw digits and the backend will tell you what digit you drew!
-    Just click where you want the line to start and where you want it to end
+    Here you will be able to draw digits and the backend will tell you what digit you drew! Just click where you want the line to start and where you want it to end
   </p>
-  <h2 id = "verification"></h2>
+  <h2 id="verification"></h2>
   <br>
   <button type="button" class="btn btn-primary" onclick="clearCanvas()" id="clear">Clear Canvas</button>
-  <button type="button" class="btn btn-primary" id="verify" onclick = "verify()">Verify </button>
+  <button type="button" class="btn btn-primary" id="verify" onclick="verify()">Verify </button>
+  <span class="verification"></span>
   <!--Set up canvas to draw digits-->
   <canvas id="canvas" style="border: 6px solid black">
     <script>
@@ -25,26 +25,29 @@
       //define canvas
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
-      var cursor = {xPos:0,yPos:0};
-      canvas.addEventListener("mousemove", function(e){
+      var cursor = {
+        xPos: 0,
+        yPos: 0
+      };
+      canvas.addEventListener("mousemove", function(e) {
         //get mouse pos
         cursor.xPos = e.offsetX;
         cursor.yPos = e.offsetY;
       });
       //check if user clicked
-      canvas.addEventListener("mousedown",function(e) {
+      canvas.addEventListener("mousedown", function(e) {
         //get mouse position
         ctx.beginPath();
         ctx.moveTo(cursor.xPos, cursor.yPos);
         //call mousemove on paint
-        canvas.addEventListener("mousemove",paint);
+        canvas.addEventListener("mousemove", paint);
       });
       //if user isn't holding down left mouse key
-      canvas.addEventListener("mouseup",function(){
-      canvas.removeEventListener("mousemove",paint);
-    });
-    //paint function will draw
-      paint = function(){
+      canvas.addEventListener("mouseup", function() {
+        canvas.removeEventListener("mousemove", paint);
+      });
+      //paint function will draw
+      paint = function() {
         ctx.lineTo(cursor.xPos, cursor.yPos);
         ctx.stroke();
       }
@@ -55,15 +58,25 @@
       //get canvas then clear completely
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
-      ctx.clearRect(0,0,canvas.width, canvas.height);
-      canvas.removeEventListener("mousemove",paint);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.removeEventListener("mousemove", paint);
     }
-    function verify(){
-      //call keras function to verify digit
+
+    function verify() {
+      var img = document.getElementById("canvas").toDataURL('image.png');
+      $.post({
+        url: "http://localhost:5000/verify/",
+        data: {
+          "img": img
+        }
+      }).done((data) => {
+        $('#verification').html('<span class="verification">' + "test" + '</span>')
+      });
+      console.log("Sent image");
+
     }
   </script>
 </body>
-<!--scripts for bootstrap-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
