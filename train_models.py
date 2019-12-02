@@ -51,6 +51,8 @@ def train():
     final_score = model.evaluate(x_test, y_test, verbose=0)
     print("final score - test loss & accuracy: ")
     print(final_score)
+    print(" Loss ",final_score[0])
+    print(" ACC: ", final_score[1])
     #prompt user for path
     path = input("Please enter directory where you want to save the model: ")
     try:

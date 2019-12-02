@@ -63,14 +63,14 @@
     }
 
     function verify() {
-      var img = document.getElementById("canvas").toDataURL('image.png');
+      var img = document.getElementById("canvas").toDataURL();
       $.post({
         url: "http://localhost:5000/verify/",
         data: {
           "img": img
         }
       }).done((data) => {
-        $('#verification').html('<span class="verification">' + "test" + '</span>')
+        $('#verification').text("I predict the number you drew is: " + data)
       });
       console.log("Sent image");
 
