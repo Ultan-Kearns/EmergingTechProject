@@ -26,5 +26,6 @@ Flask is a web framework written in python. Flask is used in this project to pro
 <img src ="https://s3.amazonaws.com/keras.io/img/keras-logo-2018-large-1200.png" height = "250px"  alt="Keras logo"/> 
 - image courtesy of keras.io.
 Keras is a high level neural network API which is programmed in Python.  Using Keras it is relatively simple to program a neural network in very few lines of code.  Keras has multiple features which make it desirable when using machine learning, these include but are not limited to: a very simple syntax to setting up models, a number of optimizers and activation functions, and a comprehensive site which contains all the information needed about Keras to get it up and running.  I used Keras to take in the MNIST digit dataset and train a model based upon the dataset.  I found Keras very easy to use and the documentation comprehensive.
+
 # Summary of project <a name = "Summary"></a>
 This project is programmed in python and uses HTML for a frontend.  The aim of this project is to produce an image classifier in python using Keras and Tensorflow to identify digits drawn by the user which it performs using the MNIST dataset as a template and compares them with the user drawn digits to reach a conclusion.
