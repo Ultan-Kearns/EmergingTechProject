@@ -9,12 +9,29 @@ import tensorflow as tf
 import cv2
 #handels regular expressions
 import re
+import os
 app = Flask(__name__)
-model = load_model('/trained.h5')
+# Reference + refactor both
+global model, graph
 @app.route('/')
 def home():
      return render_template("Home.html")
 @app.route('/verify/', methods=['GET','POST'])
+
+def init():
+  json_file = open(os.getcwd() + '/model_json','r')
+  loaded_model_json = json_file.read()
+  json_file.close()
+  loaded_model = model_from_json(loaded_model_json)
+  #load weights into new model
+  loaded_model.load_weights("trained.h5")
+  print("Loaded Model from disk")
+  #compile and evaluate loaded model
+  loaded_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+  graph = tf.get_default_graph()
+  return loaded_model,graph
+# initialize these variables
+model, graph = init()
 def verifyImage():
     #Verify images
     #Reference - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
@@ -30,8 +47,11 @@ def verifyImage():
     x = cv2.resize(x,(28,28))
     #reshape image
     x = x.reshape(1, 28, 28)
-    out = model.predict(x)
-    #ValueError: Error when checking input: expected flatten_1_input to have 3 dimensions, but got array with shape (28, 28)
+    with tf.Graph().as_default():
+        tf_train_dataset = graph.get_tensor_by_name('x_train')
+        tf_train_labels = graph.get_tensor_by_name('x_test')
+        with tf.Session(graph=graph) as session:
+            out = model.predict(x)
     ###problem with model.predict
     #print(out)
     #print(np.argmax(out, axis=1))

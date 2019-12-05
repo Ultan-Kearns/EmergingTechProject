@@ -67,6 +67,12 @@ def train():
         #save model
         model.save("trained.h5")
         print("Model saved to " + path)
+        #Reference
+        model_json = model.to_json()
+        with open("model_json", "w") as json_file:
+            json_file.write(model.json)
+            print("saved model to json")
+            model.save_weights("trained.h5")
     except:
         print(path + " not found please make directory using mkdir")
         menu();
