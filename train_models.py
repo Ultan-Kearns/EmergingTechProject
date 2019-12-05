@@ -55,28 +55,23 @@ def train():
     print(" ACC: ", final_score[1])
     #prompt user for path
     path = input("Please enter directory where you want to save the model: ")
-    try:
-        #if path blank use cur dir
-        if(path == ""):
-            path = os.getcwd()
-            print("PATH = " + path)
-        #check path exists if not make path
-        if(os.path.exists(path) == False):
-            os.mkdir(path)
-        os.chdir(path)
-        #save model
-        model.save("trained.h5")
-        print("Model saved to " + path)
-        #Reference
-        model_json = model.to_json()
-        with open("model_json", "w") as json_file:
-            json_file.write(model.json)
-            print("saved model to json")
-            model.save_weights("trained.h5")
-    except:
-        print(path + " not found please make directory using mkdir")
-        menu();
-
+    #if path blank use cur dir
+    if(path == ""):
+        path = os.getcwd()
+        print("PATH = " + path)
+    #check path exists if not make path
+    if(os.path.exists(path) == False):
+        os.mkdir(path)
+    os.chdir(path)
+    #save model
+    model.save("trained.h5")
+    print("Model saved to " + path)
+    #Reference
+    model_json = model.to_json()
+    with open("model_json", "w") as json_file:
+        json_file.write(model_json)
+        print("saved model to json")
+        model.save_weights("trained.h5")
 def prediction():
     path = input("Please enter directory where model is stored: ")
     try:
@@ -110,10 +105,6 @@ def menu():
     x = input("Please enter the option you would like to choose: ")
     if(x == "1"):
         train()
-        #Reference - https://www.pytorials.com/mnist-handwritten-digits-classification-using-keras/
-        model_json = model.to_json()
-        with open("model_json", "w") as json_file:
-            json_file.write(model.json)
     elif(x == "2"):
         #make prediction function
         prediction()
