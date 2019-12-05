@@ -27,11 +27,11 @@ def verifyImage():
     # Read image in
     x = cv2.imread('output.png', cv2.IMREAD_GRAYSCALE)
     # Resize image
-    x = cv2.resize(x,imgResize)
-    #x = x.reshape(784,28, 28)
-    out = model.predict(x)
+    x = cv2.resize(x,(28,28))
+    x = x.reshape(1,28, 28,1)
+    #out = model.predict(x)
     ###problem with above three lines - Think it's issue with model
-    print(out)
-    print(np.argmax(out, axis=1))
-    response = np.argmax(out, axis=1)
+    #print(out)
+    #print(np.argmax(out, axis=1))
+    #response = np.argmax(out, axis=1)
     return str(x)
