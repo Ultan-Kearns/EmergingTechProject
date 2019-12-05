@@ -26,13 +26,8 @@ def verifyImage():
         output.write(base64.decodebytes(imgstr))
     # Read image in
     x = cv2.imread('output.png', cv2.IMREAD_GRAYSCALE)
-    cv2.startWindowThread()
-    #shows only black square
-    cv2.imshow('img',x)
-    cv2.waitKey()
     # Resize image
     x = cv2.resize(x,imgResize)
-
     #x = x.reshape(784,28, 28)
     out = model.predict(x)
     ###problem with above three lines - Think it's issue with model
