@@ -28,10 +28,13 @@ def verifyImage():
     x = cv2.imread('output.png', cv2.IMREAD_GRAYSCALE)
     # Resize image
     x = cv2.resize(x,(28,28))
-    x = x.reshape(1,28, 28,1)
-    #out = model.predict(x)
-    ###problem with above three lines - Think it's issue with model
+    #reshape image
+    x = x.reshape(1, 28, 28)
+    out = model.predict(x)
+    #ValueError: Error when checking input: expected flatten_1_input to have 3 dimensions, but got array with shape (28, 28)
+    ###problem with model.predict
     #print(out)
     #print(np.argmax(out, axis=1))
     #response = np.argmax(out, axis=1)
+    #should be response
     return str(x)
