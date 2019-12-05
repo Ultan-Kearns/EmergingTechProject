@@ -104,6 +104,10 @@ def menu():
     x = input("Please enter the option you would like to choose: ")
     if(x == "1"):
         train()
+        #Reference - https://www.pytorials.com/mnist-handwritten-digits-classification-using-keras/
+        model_json = model.to_json()
+        with open("model_json", "w") as json_file:
+            json_file.write(model.json)
     elif(x == "2"):
         #make prediction function
         prediction()

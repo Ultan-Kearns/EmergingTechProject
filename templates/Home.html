@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-  <title>MNIST Digit checker</title>
+  <title>MNIST Digit Checker</title>
   <link rel="stylesheet" href="../static/home.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,7 +12,7 @@
   <p>
     Here you will be able to draw digits and the backend will tell you what digit you drew! Just click where you want the line to start and where you want it to end
   </p>
-  <h2 id="verification"></h2>
+  <h2 id="verification" align="center"></h2>
   <br>
   <button type="button" class="btn btn-primary" onclick="clearCanvas()" id="clear">Clear Canvas</button>
   <button type="button" class="btn btn-primary" id="verify" onclick="verify()">Verify </button>
@@ -63,14 +63,16 @@
     }
 
     function verify() {
-      var img = document.getElementById("canvas").toDataURL();
-      $.post({
-        url: "http://localhost:5000/verify/",
-        data: {
-          "img": img
+      var canvas = document.getElementById("canvas");
+      var img = canvas.toDataURL('image/png');
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:5000/verify/",
+        data: img,
+        success: function(data){
+          $('#verification').text('Predicted Output: ' + data);
+          console.log("should work")
         }
-      }).done((data) => {
-        $('#verification').text("I predict the number you drew is: " + data)
       });
       console.log("Sent image");
 

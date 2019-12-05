@@ -6,6 +6,7 @@ import keras as kr
 import numpy as np
 import base64
 import tensorflow as tf
+import cv2
 #handels regular expressions
 import re
 app = Flask(__name__)
@@ -16,20 +17,26 @@ def home():
 @app.route('/verify/', methods=['GET','POST'])
 def verifyImage():
     #Verify images
-    #Refernce - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
+    #Reference - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
     imgData = request.get_data()
+    imgResize = (28,28)
     # encode image in base 64
-    imgstr = str(re.search(r'base64,(.*)', str(imgData)))
-    with open('/output.png', 'wb') as output:
-        output.write(base64.b64decode(imgstr))
-        print("OUTPUT")
+    imgstr = re.search(b'base64,(.*)', imgData).group(1)
+    with open('output.png','wb') as output:
+        output.write(base64.decodebytes(imgstr))
     # Read image in
-    x = imread('output.png', mode='L')
+    x = cv2.imread('output.png', cv2.IMREAD_GRAYSCALE)
+    cv2.startWindowThread()
+    #shows only black square
+    cv2.imshow('img',x)
+    cv2.waitKey()
     # Resize image
-    x = imresize(28,28)
+    x = cv2.resize(x,imgResize)
+
+    #x = x.reshape(784,28, 28)
     out = model.predict(x)
+    ###problem with above three lines - Think it's issue with model
     print(out)
     print(np.argmax(out, axis=1))
     response = np.argmax(out, axis=1)
-    return str(response[0])
-    return render_template("Home.html")
+    return str(x)
