@@ -11,7 +11,7 @@ def init():
   loaded_model.load_weights(os.getcwd() + "/trained.h5")
   print("Loaded Model from disk")
   #compile and evaluate loaded model
-  loaded_model.compile(loss='categorical_crossentropy',optimizer='adadelta',metrics=['accuracy'])
+  loaded_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
   graph = ops.get_default_graph()
   #this is problem
   return graph,loaded_model

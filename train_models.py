@@ -24,10 +24,8 @@ def train():
         #flatten the layers to fit input size
         kr.layers.Flatten(input_shape=(image_cols, image_rows)),
         #here was basically see give me x neurons
-        # I used 4 RELU layers and 1 softmax layer
+        # I used 2 RELU layers and 1 softmax layer
         #Used https://keras.io/activations/ to research activations
-        kr.layers.Dense(64, activation='relu'),
-        kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),
         kr.layers.Dense(64, activation='relu'),
         #softmax normalizes the dataset - 10 neurons due to only 10 possible digits
@@ -46,9 +44,9 @@ def train():
                   metrics=['accuracy'])
     #here we will train the model using training set and testing for x epochs
     #using 256 batchs for each model
-    model.fit(x_train,y_train,epochs=10, batch_size=128)
+    model.fit(x_train,y_train,epochs=10, batch_size=256)
     # Final evaluation of the model test loss and accuracy -  https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
-    final_score = model.evaluate(x_test, y_test, verbose=0)
+    final_score = model.evaluate(x_test, y_test, verbose=1)
     print("final score - test loss & accuracy: ")
     print(final_score)
     print(" Loss ",final_score[0])
