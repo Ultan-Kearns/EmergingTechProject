@@ -1,7 +1,7 @@
 from flask import Flask, escape, request,render_template
 import train_models
 from keras.models import load_model
-from scipy.misc import imread, imresize
+from PIL import Image
 import keras as kr
 import numpy as np
 import base64
@@ -28,7 +28,7 @@ def verifyImage():
     with open('output.png', 'wb') as output:
         output.write(base64.b64decode(imgstr))
     # Read image in
-    x = cv2.imread('output.png',cv2.IMREAD_GRAYSCALE)
+    x = cv2.imread(os.getcwd() + '/output.png',cv2.IMREAD_GRAYSCALE)
     cv2.imwrite(os.getcwd() + "/grayimg.png",x)
     # Resize image
     x = cv2.resize(x,(28,28))

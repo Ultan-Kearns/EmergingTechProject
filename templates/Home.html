@@ -23,8 +23,11 @@
       //used https://www.html5canvastutorials.com/labs/html5-canvas-paint-application/ as template
       //Changed and refactored the code below
       //define canvas
+      //Ref for fill + strokestyle = https://www.w3schools.com/tags/canvas_strokestyle.asp
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
+      ctx.fillStyle="black";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
       var cursor = {
         xPos: 0,
         yPos: 0
@@ -48,6 +51,8 @@
       });
       //paint function will draw
       paint = function() {
+        ctx.strokeStyle = "#FFFFFF";
+
         ctx.lineTo(cursor.xPos, cursor.yPos);
         ctx.lineWidth = 10;
         ctx.stroke();
@@ -61,6 +66,8 @@
       var ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       canvas.removeEventListener("mousemove", paint);
+      ctx.fillStyle="black";
+      ctx.fillRect(0,0,canvas.width,canvas.height);
     }
 
     function verify() {
