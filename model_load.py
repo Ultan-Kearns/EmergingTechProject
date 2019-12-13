@@ -1,7 +1,7 @@
 import os
 from keras.models import model_from_json
 from tensorflow.python.framework import ops
-
+#Reference - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
 def init():
   json_file = open(os.getcwd() + '/model_json','r')
   loaded_model_json = json_file.read()
@@ -11,8 +11,6 @@ def init():
   loaded_model.load_weights(os.getcwd() + "/trained.h5")
   print("Loaded Model from disk")
   #compile and evaluate loaded model
-  loaded_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+  loaded_model.compile(loss='sparse_categorical_crossentropy',optimizer='adadelta',metrics=['accuracy'])
   graph = ops.get_default_graph()
-  #this is problem
   return graph,loaded_model
- # initialize these variables

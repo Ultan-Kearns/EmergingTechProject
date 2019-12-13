@@ -26,9 +26,9 @@ def train():
         #here was basically see give me x neurons
         # I used 2 RELU layers and 1 softmax layer
         #Used https://keras.io/activations/ to research activations
-        kr.layers.Dense(64, activation='relu'),
-        kr.layers.Dense(64, activation='relu'),
-        #softmax normalizes the dataset - 10 neurons due to only 10 possible digits
+        kr.layers.Dense(256, activation='relu'),
+        kr.layers.Dense(256, activation='relu'),
+         #softmax normalizes the dataset - 10 neurons due to only 10 possible digits
         kr.layers.Dense(10, activation='softmax'),
     ])
     # normalize inputs from 0-255 to 0-1
@@ -44,7 +44,7 @@ def train():
                   metrics=['accuracy'])
     #here we will train the model using training set and testing for x epochs
     #using 256 batchs for each model
-    model.fit(x_train,y_train,epochs=10, batch_size=256)
+    model.fit(x_train,y_train,epochs=15, batch_size=256)
     # Final evaluation of the model test loss and accuracy -  https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
     final_score = model.evaluate(x_test, y_test, verbose=1)
     print("final score - test loss & accuracy: ")
@@ -64,7 +64,7 @@ def train():
     #save model
     model.save("trained.h5")
     print("Model saved to " + path)
-    #Reference
+    #Reference - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
     model_json = model.to_json()
     with open("model_json", "w") as json_file:
         json_file.write(model_json)
