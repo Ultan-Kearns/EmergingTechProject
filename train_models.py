@@ -64,7 +64,7 @@ def train():
     #save model
     model.save("trained.h5")
     print("Model saved to " + path)
-    #Reference - https://www.pytorials.com/deploy-keras-model-to-production-using-flask/
+    #Reference -https://www.pytorials.com/mnist-handwritten-digits-classification-using-keras/
     model_json = model.to_json()
     with open("model_json", "w") as json_file:
         json_file.write(model_json)
